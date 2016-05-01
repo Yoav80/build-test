@@ -1,0 +1,24 @@
+{
+  "name": "build-test",
+  "description": "",
+  "main": "main.js",
+  "authors": [
+    "yoav melkman <y_milkman@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Yoav80/build-test",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "jquery": "^2.2.3",
+    "systemjs": "*",
+    "system-css-plugin": "https://github.com/systemjs/plugin-css.git",
+    "system-text-plugin": "https://github.com/systemjs/plugin-text.git"
+  }
+}

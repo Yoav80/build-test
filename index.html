@@ -1,0 +1,21 @@
+<!doctype html>
+<html id="html" dir="ltr">
+<head>
+	<meta charset="UTF-8">
+	<title>JSBootcamp</title>
+
+    <link rel="stylesheet" href="styles/site.css" />
+</head>
+<body>
+    <app></app>
+
+	<script src="lib/system.js"></script>
+	<script src="system.config.js"></script>
+
+	<script>
+		System.import("main").catch(function(err) {
+			console.error("App loading failed: %O", err);
+		});
+	</script>
+</body>
+</html>

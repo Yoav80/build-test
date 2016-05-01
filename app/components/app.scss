@@ -1,0 +1,16 @@
+@import '../../styles/_base';
+
+app {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  .app-container {
+    height: 100%;
+    width: 100%;
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+}
