@@ -74,6 +74,11 @@ gulp.task('compile-ts' , function () {
             .pipe(ts({
                 noImplicitAny: true,
             }))
-            .pipe(gulp.dest('./app/services'))
+            .pipe(gulp.dest('./app/services')),
+        gulp.src('./*.ts')
+            .pipe(ts({
+                noImplicitAny: true,
+            }))
+            .pipe(gulp.dest('./'))
     )
 });
