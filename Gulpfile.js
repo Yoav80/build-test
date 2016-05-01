@@ -2,9 +2,12 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var rename = require('gulp-rename');
 var ts = require('gulp-typescript');
 var shell = require('shelljs');
 var q = require('q');
+var webserver = require('gulp-webserver');
+
 
 gulp.task('default', function() {
     console.log('Gulp is running');
@@ -23,13 +26,21 @@ gulp.task('postinstall' , [
 gulp.task('restore-lib',['restore-packages'], function() {
 
     console.log('coping bower components...');
+    return q.all(
 
-    return gulp.src(['bower_components/angular/angular.js' ,
-        'bower_components/jquery/jquery.js',
-        'bower_components/system-css-plugin/css.js',
-        'bower_components/system-text-plugin/text.js',
-        'bower_components/systemjs/src/System.js'])
-        .pipe(gulp.dest('lib/'));
+        gulp.src(['bower_components/angular/angular.js' ,
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/system.js/dist/system.js'])
+            .pipe(gulp.dest('lib/')),
+
+        gulp.src(["bower_components/system-text-plugin/text.js" , "bower_components/system-css-plugin/css.js"])
+            .pipe(rename(function (path) {
+                var name = path.basename;
+                path.basename = "system." + name;
+                return path;
+            }))
+            .pipe(gulp.dest("lib/"))
+    )
 });
 
 gulp.task('restore-packages', function() {
@@ -81,4 +92,14 @@ gulp.task('compile-ts' , function () {
             }))
             .pipe(gulp.dest('./'))
     )
+});
+
+gulp.task('webserver', function() {
+    gulp.src('./')
+        .pipe(webserver({
+            livereload: false,
+            directoryListing: false,
+            open: true,
+            path: "/index.html"
+        }));
 });
